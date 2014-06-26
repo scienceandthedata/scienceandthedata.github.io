@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fnil\fcharset0 Century;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww24720\viewh12420\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\ql\qnatural\pardirnatural
+
+\f0\fs28 \cf0 How to set up git and GitHub in 10 easy steps (by Shani)\
+\
+I found the process of getting this working much easier once I understood that GitHub is a particular way of setting up a more general thing, which is a git repository (or a set of repositories). You can use git without GitHub. You might want to use GitHub, because it has nice features for sharing your work. In this case, you must manually create every repository you plan to sync on GitHub itself, either through the website or the downloaded app (I like the website better but this is just preference).\
+\
+Because your repositories must start on GitHub, it's easier to first make everything on github, then transfer them to your own computer using git, and then add whatever you want in the usual way (command line or drag-and-drop), then update your computer using git and then push the new stuff to github using git.\
+\
+The trick is to set up GitHub first and then set up git, even though it seems like it should be the other way around.\
+\
+Let me go through that more slowly:\
+\
+I First set up GitHub\
+\
+1) Make an account on GitHub (https://github.com/)\
+\
+2) On the GitHub website or with the GitHub app:\
+\
+Create a repository (or more than one) with a clear name (like games). Check the box to initialize it with a readme. Hit the green button.\
+\
+2b) Optional but recommended: \
+\
+When you create the repository by hitting the green button, it'll open the repository for you. Click on 'settings' at the bottom of the right-hand dashboard (looks like a screwdriver and a wrench). You can set some things here, like restricting editing to collaborators only. Create a webpage with an automatic page generator. Just keep all the defaults, you'll edit it later when you have time. You don't have to ever use it, but it's a nice option, and it's convenient to do this before cloning the repository. (You can always generate a website for your project later if you don't want to do it now, by opening your repository on the github website (or app) and going to settings.)\
+\
+II Then set up git\
+\
+3) Set up a git bash shell on your computer. This should be straightforward and easy. If it isn't, try doing it a different way.\
+\
+Here are some sites that might help. Or just do your own google search on 'installing git' and find your favorite.\
+\
+These sites are for git:\
+http://git-scm.com/downloads\
+http://git-scm.com/book/en/Getting-Started-Installing-Git\
+\
+This site is from github with links to installing git:\
+https://help.github.com/articles/set-up-git\
+\
+*note* Part of setting up your git bash will be establishing a user name and email. These should be the same as the ones you use for your GitHub account.\
+\
+III Then set up the environment on your computer\
+\
+4) Create a directory in a convenient place on your computer, and name it something obvious like "git_repos"\
+\
+III Then integrate GitHub and git and your files\
+\
+5) Open your git bash command line. I am assuming you already set up your name and email in step 3. \
+6) cd to git_repos \
+7) Initialize your repositories using clone. The basic idea is you are telling git to grab the repository you made using GitHub and copy it to your computer. Assuming we just made a 'games' repo for user 'fancypants' this will look like:\
+\
+git clone https://github.com/fancypants/games.git\
+\
+It will tell you what it's doing and when it's done.\
+\
+8) There is now a directory on your computer along the lines of ~/git_repos/games\
+It already has the right relationships set up.\
+\
+9) Now move your files (e.g. 'outerspaceshootout.py' or 'floatingbabies.py') into your 'games' folders. If you haven't written any games, then write a new game and save it in ~/git_repos/games. \
+\
+10) run the following lines in order. I'll tell you what they do in brackets, those shouldn't be typed. Also, you don't need to type the $, that'll be the prompt in your git bash.\
+\
+$ git add *.py		\
+[This lets git know that there are some python files in the directory]\
+\
+$ git commit -m 'adding two awesome new games'\
+[This lets git know that you are ready to roll.]\
+\
+$ git push\
+[This tells git to make it official]\
+\
+Notes: When you run 'git push', it will ask for your github name and password. If it doesn't, then something went wrong. \
+Notes: when you run 'git commit' it makes life easier to use -m even if you have nothing to say (-m 'nothing') because otherwise it will launch an editor for you to use to type your notes and that is a pain in the neck\
+\
+IV That's it!\
+\
+This is basically all you need. You might be suspicious because I didn't say anything about git pull. That's because you won't need to use git pull, unless you are actively collaborating with someone on a repository and you are ready to merge your changes. You don't need 'git pull' because you cloned your repository with its webpage and everything. From now on, you're going to be making changes on your computer and pushing them to your repository. There's nothing left to do on GitHub.\
+\
+V Troubleshooting\
+\
+T1) "I already have a repository so I can't clone it"\
+My advice is to save a copy of the repository under a different name, delete it from your computer and from GitHub (if it's there), and start fresh from step 4. It'll make your life easier. \
+\
+But if that doesn't make your life easier, here's how to merge without cloning:\
+https://help.github.com/articles/adding-a-remote\
+\
+In my own words:\
+1) Make a repository on GitHub with the same name as the repository on your computer (e.g., 'too_hard_to_clone')\
+\
+2) Open your git bash command line, and cd to your repository ~/janetjackson/git_repos/too_hard_to_clone. If your repo isn't already in your repo directory, I recommend putting it there. But you don't have to. You can do this from any place in your computer. \
+\
+3) type' $ git init' to make it a git folder\
+\
+4) use '$ git add' to alert git to whatever files you want to be available to others. you can do this one at a time, or you can use the wildcard to do a subset, or you can just say '$ git add .' to add everything. (there's an extra . at the end there if you want to add everything)\
+\
+Helpful Hint - if you are going to do 'git add' and you have a lot of files, you might want to make a 'git ignore' file to make sure you don't load things like databases or pdfs by mistake\
+\
+5) use $ git commit -m 'blahblah' to tell git that you're serious about this.\
+\
+5) Now you are going to tell your computer that there is a github repository out there that it should be connected to. You do this by typing\
+$ git remote add origin https://github.com/janetjackson/too_hard_to_clone.git \
+(don't forget the .git part at the end!)\
+\
+6) if you try '$ git push' at this point, it will complain that there is no upstream branch. So you need to make an upstream branch out of the remote you just made:\
+\
+$ git pull origin master\
+$ git push --set-upstream origin master\
+\
+It should ask for your user name and password. You should be able to do everything the normal way from now on.\
+\
+\
+\
+\
+\
+}
